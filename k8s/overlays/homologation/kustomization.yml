@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: messages
+
+resources:
+  - ../../base
+
+configMapGenerator:
+  - name: data-env-start
+    behavior: merge
+    literals:
+      - pass=mane-nelsons-reimposing

@@ -1,0 +1,44 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: messages
+
+resources:
+  - ../../base
+
+configMapGenerator:
+  - name: data-env-start
+    behavior: merge
+    literals:
+      - pass=*ac#Z@nZ^J#qxQ6uSm2##pvX
+    
+patches:
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ready-for-production
+        labels:
+          app: ready-for-production
+          team: devops
+      spec:
+        replicas: 3
+        template:
+          metadata:
+            labels:
+              app: ready-for-production
+              team: devops
+          spec:
+            containers:
+            - name: ready-for-production
+              resources:
+                requests:
+                  memory: "512Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "512Mi"
+                  cpu: "500m"
+    target:
+      labelSelector: app=ready-for-production
+      group: apps
+      version: v1
+      kind: Deployment
