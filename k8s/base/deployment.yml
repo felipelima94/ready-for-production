@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ready-for-production
+  team: devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ready-for-production
+  revisionHistoryLimit: 5
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: ready-for-production
+        team: devops
+    spec:
+      containers:
+      - name: ready-for-production
+        image: ect/image:tag
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        envFrom:
+          - configMapRef:
+              name: data-env-start
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 8080
+          name: http
