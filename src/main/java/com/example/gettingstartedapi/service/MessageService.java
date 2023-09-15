@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class MessageService {
     private final MessageRepository messageRepository;
 
-    public Message save(MessageDTO message) {
+    public Message send(MessageDTO message) {
         return messageRepository.save(new Message(message.getText()));
     }
 

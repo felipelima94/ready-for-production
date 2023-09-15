@@ -1,9 +1,7 @@
 package com.example.gettingstartedapi.controller;
 
-import java.net.URISyntaxException;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +21,9 @@ import lombok.RequiredArgsConstructor;
 public class MessageController {
     private final MessageService messageService;
 
-    @PostMapping("/save")
-    public ResponseEntity<Message> save(@RequestBody MessageDTO message) {
-        return ResponseEntity.ok().body(messageService.save(message));
+    @PostMapping("/send")
+    public ResponseEntity<Message> send(@RequestBody MessageDTO message) {
+        return ResponseEntity.ok().body(messageService.send(message));
     }
 
     @GetMapping("/")
