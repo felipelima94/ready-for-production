@@ -16,7 +16,7 @@ import com.example.gettingstartedapi.service.MessageService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/v1/message")
+@RequestMapping("/message")
 @RequiredArgsConstructor
 public class MessageController {
     private final MessageService messageService;
