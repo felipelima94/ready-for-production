@@ -49,4 +49,8 @@ Para aplicar uma atualização da aplicação, é preciso subir o commit na bran
 
 ## 📦 Implantação
 
-A aplicação esta sendo executada em por meio de de um container em um cluster `Kubernetes`. Para realizar a manutenção dos seus ambientes, é necessário realizar as mudanças no Dockerfile localizado na raiz do projeto e nos seus respectivos manifestos Kustomization dentro do diretório `k8s/overlays`. Depois de versionar a alteração do kustomization, o `ArgoCD` sera resposável por aplicar automaticamente no Kubernetes
+A aplicação esta sendo executada por meio de de um container em um cluster `Kubernetes`. Para realizar a manutenção dos seus ambientes, é necessário realizar as mudanças no Dockerfile localizado na raiz do projeto e nos seus respectivos manifestos Kustomization dentro do diretório `k8s/overlays`. Depois de versionar a alteração do kustomization, o `ArgoCD` sera resposável por aplicar automaticamente no Kubernetes
+
+## 📄 Documentação
+
+- [Endpoints](/doc/endpoint.md)
