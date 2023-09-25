@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ready-for-production
+  description: application responsible to receive message and save in database
+  labels:
+    github.com/organization: ready_for_production
+  annotations:
+    example.com/service-discovery: ready-for-production
+    circleci.com/project-slug: github.com/organization/ready-for-production
+  tags:
+    - java
+    - maven
+  links:
+    - url: https://admin.example-org.com
+      title: Admin Dashboard
+      icon: dashboard
+      type: admin-dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: sre-team
+  system: public-service
